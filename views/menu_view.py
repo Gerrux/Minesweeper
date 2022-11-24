@@ -29,21 +29,22 @@ class MenuView(BaseView):
         self.create_menu()
 
     def create_menu(self):
-        def start():
+        def start_game():
             self.sound_effect.play()
+            self.controller.switch_screen("game")
             self.view_run = False
 
         def on_play_easy(button):
             self.controller.set_game_mode("easy")
-            start()
+            start_game()
 
         def on_play_medium(button):
             self.controller.set_game_mode("medium")
-            start()
+            start_game()
 
         def on_play_hard(button):
             self.controller.set_game_mode("hard")
-            start()
+            start_game()
 
         def on_quit(button):
             sys.exit()

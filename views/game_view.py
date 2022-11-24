@@ -246,6 +246,7 @@ class MinesweeperView(BaseView):
             self.start_time = pygame.time.get_ticks() - self.game_time
 
         def on_menu(button):
+            self.controller.switch_screen("menu")
             self.view_run = False
 
         background_menu = Rectangle(0, 0, self.surface_width, self.surface_height, pygame.Color(SECONDARY_COLOR))
@@ -293,10 +294,12 @@ class MinesweeperView(BaseView):
         self.sound_effects["win"].set_volume(c.VOLUME_MUSIC)
         self.sound_effects["win"].play()
         self.show_message('YOU WIN!', WARNING_COLOR, centralized=True)
+        self.controller.switch_screen("menu")
         self.view_run = False
 
     def show_game_over_message(self):
         self.sound_effects["lose"].set_volume(c.VOLUME_MUSIC)
         self.sound_effects["lose"].play()
         self.show_message('YOU LOSE!', WARNING_COLOR, centralized=True)
+        self.controller.switch_screen("menu")
         self.view_run = False

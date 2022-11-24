@@ -1,10 +1,17 @@
 class MinesweeperController:
     def __init__(self, model):
         self.view = None
+        self.view_state = "menu"
         self.model = model
 
     def set_view(self, view):
         self.view = view
+
+    def get_view_state(self):
+        return self.view_state
+
+    def switch_screen(self, state):
+        self.view_state = state
 
     def set_game_mode(self, mode):
         self.model.game_mode = mode
