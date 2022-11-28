@@ -1,6 +1,6 @@
 from random import randint
 
-from models.cell_model import MinesweeperCell
+from .cell_model import MinesweeperCell
 
 MIN_ROW_COUNT = 5
 MAX_ROW_COUNT = 30
@@ -46,19 +46,28 @@ class MinesweeperModel:
             self.cells_table.append(cells_row)
 
     def get_cell(self, row, column):
-        if row < 0 or column < 0 or self.row_count <= row or self.column_count <= column:
+        if (
+                row < 0
+                or column < 0
+                or self.row_count <= row
+                or self.column_count <= column
+        ):
             return None
 
         return self.cells_table[row][column]
 
     def get_count_flags(self):
-        return len(list(filter(lambda c: c.state == 'flagged', sum(self.cells_table, []))))
+        return len(
+            list(filter(lambda c: c.state == "flagged", sum(self.cells_table, [])))
+        )
 
     def is_win(self):
         for row in range(self.row_count):
             for column in range(self.column_count):
                 cell = self.cells_table[row][column]
-                if not cell.mined and (cell.state != 'opened' and cell.state != 'flagged'):
+                if not cell.mined and (
+                        cell.state != "opened" and cell.state != "flagged"
+                ):
                     return False
         if self.get_count_flags() <= self.bomb_count:
             return True
@@ -85,7 +94,7 @@ class MinesweeperModel:
         if cell.counter == 0:
             neighbours = self.get_cell_neighbours(row, column)
             for n in neighbours:
-                if n.state == 'closed':
+                if n.state == "closed":
                     self.open_cell(n.row, n.column)
 
     def next_cell_mark(self, row, column):
@@ -99,7 +108,7 @@ class MinesweeperModel:
                 row = randint(0, self.row_count - 1)
                 column = randint(0, self.column_count - 1)
                 cell = self.get_cell(row, column)
-                if not cell.state == 'opened' and not cell.mined:
+                if not cell.state == "opened" and not cell.mined:
                     cell.mined = True
                     break
 

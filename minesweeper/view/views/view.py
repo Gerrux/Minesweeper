@@ -1,7 +1,8 @@
+import os
 import sys
-import pygame
-
 from collections import defaultdict
+
+import pygame
 
 
 class BaseView:
@@ -22,6 +23,11 @@ class BaseView:
         self.keyup_handlers = defaultdict(list)
         self.mouse_handlers = []
 
+    @staticmethod
+    def get_path_assets(path):
+        asset_path = f"{os.path.normpath(os.path.dirname(os.path.abspath(os.path.join(__file__, '../../'))))}\{os.path.normpath(path)}"
+        return asset_path
+
     def update(self):
         for o in self.objects:
             o.update()
@@ -35,7 +41,11 @@ class BaseView:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type in (pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION):
+            elif event.type in (
+                    pygame.MOUSEBUTTONDOWN,
+                    pygame.MOUSEBUTTONUP,
+                    pygame.MOUSEMOTION,
+            ):
                 for handler in self.mouse_handlers:
                     if event.type == pygame.MOUSEMOTION:
                         handler(event.type, event.pos)
