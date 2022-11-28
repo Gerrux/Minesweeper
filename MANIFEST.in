@@ -1,0 +1,4 @@
+include *.md *.txt LICENSE
+include minesweeper/assets/fonts/*.ttf
+include minesweeper/assets/sounds/*.wav
+include minesweeper/assets/sprites/*.png

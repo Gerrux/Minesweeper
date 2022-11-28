@@ -1,10 +1,17 @@
 class MinesweeperController:
     def __init__(self, model):
         self.view = None
+        self.view_state = "menu"
         self.model = model
 
     def set_view(self, view):
         self.view = view
+
+    def get_view_state(self):
+        return self.view_state
+
+    def set_view_state(self, state):
+        self.view_state = state
 
     def set_game_mode(self, mode):
         self.model.game_mode = mode
@@ -20,7 +27,9 @@ class MinesweeperController:
         try:
             self.model.start_game(*map(int, game_settings))
         except:
-            self.model.start_game(self.model.row_count, self.model.column_count, self.model.bomb_count)
+            self.model.start_game(
+                self.model.row_count, self.model.column_count, self.model.bomb_count
+            )
 
         self.view.create_board()
 
@@ -34,5 +43,7 @@ class MinesweeperController:
 
     def on_right_click(self, row, column):
         self.model.next_cell_mark(row, column)
-        self.view.block_cell(row, column, self.model.get_cell(row, column).state == 'flagged')
+        self.view.block_cell(
+            row, column, self.model.get_cell(row, column).state == "flagged"
+        )
         self.view.sync_with_model()

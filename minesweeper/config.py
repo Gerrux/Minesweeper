@@ -15,7 +15,7 @@ GAME_MODE = {
         "cell_height": 60,
         "count_bomb": 10,
         "surface_width": 560,
-        "surface_height": 650
+        "surface_height": 650,
     },
     "medium": {
         "count_cells_row": 16,
@@ -24,7 +24,7 @@ GAME_MODE = {
         "cell_height": 40,
         "count_bomb": 40,
         "surface_width": 660,
-        "surface_height": 760
+        "surface_height": 760,
     },
     "hard": {
         "count_cells_row": 30,
@@ -33,8 +33,8 @@ GAME_MODE = {
         "cell_height": 40,
         "count_bomb": 99,
         "surface_width": 1220,
-        "surface_height": 760
-    }
+        "surface_height": 760,
+    },
 }
 
 GAME_SPRITES = {
@@ -65,7 +65,7 @@ SOUNDS = {
     "win": "assets/sounds/win.wav",
     "lose": "assets/sounds/lose.wav",
     "click": "assets/sounds/click.wav",
-    "flag": "assets/sounds/flag.wav"
+    "flag": "assets/sounds/flag.wav",
 }
 
 MESSAGE_DURATION = 5
