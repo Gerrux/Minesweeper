@@ -42,9 +42,9 @@ class BaseView:
                 pygame.quit()
                 sys.exit()
             elif event.type in (
-                    pygame.MOUSEBUTTONDOWN,
-                    pygame.MOUSEBUTTONUP,
-                    pygame.MOUSEMOTION,
+                pygame.MOUSEBUTTONDOWN,
+                pygame.MOUSEBUTTONUP,
+                pygame.MOUSEMOTION,
             ):
                 for handler in self.mouse_handlers:
                     if event.type == pygame.MOUSEMOTION:

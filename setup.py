@@ -21,11 +21,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     entry_points={
-        "console_scripts": [
-            "minesweeper=minesweeper:__main__"
-        ],
+        "console_scripts": ["minesweeper=minesweeper:__main__"],
     },
-    setup_requires=[
-        "pygame~=2.1.2"
-    ],
+    setup_requires=["pygame~=2.1.2"],
 )

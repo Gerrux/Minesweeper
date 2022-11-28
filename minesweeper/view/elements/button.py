@@ -7,17 +7,17 @@ from .text_object import TextObject
 
 class Button:
     def __init__(
-            self,
-            x,
-            y,
-            w,
-            h,
-            text,
-            on_click=lambda x: None,
-            padding=0,
-            font=None,
-            centralized=True,
-            corner_radius=0,
+        self,
+        x,
+        y,
+        w,
+        h,
+        text,
+        on_click=lambda x: None,
+        padding=0,
+        font=None,
+        centralized=True,
+        corner_radius=0,
     ):
         self.state = "normal"
         self.on_click = on_click

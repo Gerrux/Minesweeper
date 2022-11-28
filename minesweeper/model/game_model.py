@@ -47,10 +47,10 @@ class MinesweeperModel:
 
     def get_cell(self, row, column):
         if (
-                row < 0
-                or column < 0
-                or self.row_count <= row
-                or self.column_count <= column
+            row < 0
+            or column < 0
+            or self.row_count <= row
+            or self.column_count <= column
         ):
             return None
 
@@ -66,7 +66,7 @@ class MinesweeperModel:
             for column in range(self.column_count):
                 cell = self.cells_table[row][column]
                 if not cell.mined and (
-                        cell.state != "opened" and cell.state != "flagged"
+                    cell.state != "opened" and cell.state != "flagged"
                 ):
                     return False
         if self.get_count_flags() <= self.bomb_count:

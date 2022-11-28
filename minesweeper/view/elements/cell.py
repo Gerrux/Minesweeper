@@ -7,7 +7,7 @@ from minesweeper.config import GAME_SPRITES
 
 class Cell:
     def __init__(
-            self, bounds, image, on_left_click=lambda x: None, on_right_click=lambda x: None
+        self, bounds, image, on_left_click=lambda x: None, on_right_click=lambda x: None
     ):
         self.bounds = bounds
         self.image = image

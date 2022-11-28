@@ -293,7 +293,7 @@ class MinesweeperView(BaseView):
         self.mouse_handlers = []
         self.objects.append(background_menu)
         for i, (text, click_handler) in enumerate(
-                (("PLAY", on_play), ("MENU", on_menu))
+            (("PLAY", on_play), ("MENU", on_menu))
         ):
             b = Button(
                 20,
@@ -324,11 +324,11 @@ class MinesweeperView(BaseView):
             self.show_game_over_message()
 
     def show_message(
-            self,
-            text,
-            color=SECONDARY_COLOR,
-            centralized=False,
-            duration=MESSAGE_DURATION,
+        self,
+        text,
+        color=SECONDARY_COLOR,
+        centralized=False,
+        duration=MESSAGE_DURATION,
     ):
         message = TextObject(
             self.game_area_width // 2,

@@ -64,12 +64,12 @@ class MenuView(BaseView):
         )
         self.objects.append(self.background_image)
         for i, (text, click_handler) in enumerate(
-                (
-                        ("EASY", on_play_easy),
-                        ("MEDIUM", on_play_medium),
-                        ("HARD", on_play_hard),
-                        ("QUIT", on_quit),
-                )
+            (
+                ("EASY", on_play_easy),
+                ("MEDIUM", on_play_medium),
+                ("HARD", on_play_hard),
+                ("QUIT", on_quit),
+            )
         ):
             b = Button(
                 225,
