@@ -4,7 +4,7 @@ with open("README.md", "r") as readme_file:
     long_description = readme_file.read()
 
 setup(
-    name="minesweeper-py",
+    name="minesweeper-mvc",
     version="1.0.0",
     description="",
     long_description=long_description,
@@ -14,7 +14,7 @@ setup(
     license="MIT",
     classifiers=[
         "Development Status :: 4 - Beta",
-        "Intended Audience :: END USERS/DESKTOP",
+        "Intended Audience :: End Users/Desktop",
         "License :: OSI Approved :: MIT License",
     ],
     keywords="minesweeper game pygame",
@@ -23,5 +23,8 @@ setup(
     entry_points={
         "console_scripts": ["minesweeper=minesweeper:__main__"],
     },
-    setup_requires=["pygame~=2.1.2"],
+    setup_requires=[
+        "wheel~=0.37.1",
+        "pygame~=2.1.2"
+    ],
 )
