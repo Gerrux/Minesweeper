@@ -1,17 +1,18 @@
 class MinesweeperController:
+    __view_state = "menu"
+
     def __init__(self, model):
         self.view = None
-        self.view_state = "menu"
         self.model = model
 
     def set_view(self, view):
         self.view = view
 
-    def get_view_state(self):
-        return self.view_state
-
     def set_view_state(self, state):
-        self.view_state = state
+        self.__view_state = state
+
+    def get_view_state(self):
+        return self.__view_state
 
     def set_game_mode(self, mode):
         self.model.game_mode = mode
@@ -32,6 +33,9 @@ class MinesweeperController:
             )
 
         self.view.create_board()
+
+    def save_records(self, ticks):
+        return self.model.save_records(ticks)
 
     def on_left_click(self, row, column):
         self.model.open_cell(row, column)

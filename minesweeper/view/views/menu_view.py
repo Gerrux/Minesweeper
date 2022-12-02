@@ -56,6 +56,11 @@ class MenuView(BaseView):
             self.controller.set_game_mode("hard")
             start_game()
 
+        def on_scoreboard(button):
+            self.sound_effect.play()
+            self.controller.set_view_state("records")
+            self.view_run = False
+
         def on_quit(button):
             sys.exit()
 
@@ -68,6 +73,7 @@ class MenuView(BaseView):
                 ("EASY", on_play_easy),
                 ("MEDIUM", on_play_medium),
                 ("HARD", on_play_hard),
+                ("RECORDS", on_scoreboard),
                 ("QUIT", on_quit),
             )
         ):

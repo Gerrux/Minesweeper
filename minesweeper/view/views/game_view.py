@@ -346,6 +346,7 @@ class MinesweeperView(BaseView):
         self.sound_effects["win"].set_volume(VOLUME_MUSIC)
         self.sound_effects["win"].play()
         self.show_message("YOU WIN!", WARNING_COLOR, centralized=True)
+        self.controller.save_records(self.game_time)
         self.controller.set_view_state("menu")
         self.view_run = False
 
