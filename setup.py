@@ -3,10 +3,13 @@ from setuptools import setup, find_packages
 with open("README.md", "r") as readme_file:
     long_description = readme_file.read()
 
+description = "This simple implementation of the minesweeper game is done in Python using the pygame game library and " \
+              "the MVC pattern. "
+
 setup(
     name="minesweeper-mvc",
-    version="1.0.1",
-    description="",
+    version="1.0.3",
+    description=description,
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Ilya Kalinin",
