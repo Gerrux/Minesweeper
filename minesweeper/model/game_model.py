@@ -125,17 +125,15 @@ class MinesweeperModel:
             if r != row:
                 neighbours.append(self.get_cell(r, column))
             neighbours.append(self.get_cell(r, column + 1))
-
         return filter(lambda n: n is not None, neighbours)
 
     def save_records(self, ticks):
         src = f"{os.path.normpath(os.path.dirname(os.path.abspath(__file__)))}\{os.path.normpath('records.json')}"
-        data = None
         with open(src, "r") as read_file:
             data = json.load(read_file)
+        if data[self.game_mode] > ticks or data[self.game_mode] == 0:
             data[self.game_mode] = ticks
-
-        with open(src, "w") as write_file:
-            json.dump(data, write_file)
-
-        return True
+            with open(src, "w") as write_file:
+                json.dump(data, write_file)
+            return True
+        return False

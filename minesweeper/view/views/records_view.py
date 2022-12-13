@@ -72,7 +72,7 @@ class RecordsView(BaseView):
 
             text = f'{key.capitalize()}: {timer_string}'
             record = Label(
-                175,
+                600 // 2,
                 300 + (30 + 10) * counter,
                 text,
                 pygame.Color(PRIMARY_COLOR),

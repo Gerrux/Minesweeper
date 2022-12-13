@@ -5,7 +5,7 @@ class Label(TextObject):
     def __init__(self, x, y, text, color, font, centralized):
         super().__init__(x, y, lambda: text, color, font)
         self.text = text
-        self.centralized = False
+        self.centralized = centralized
 
     def draw(self, surface, **kwargs):
         text_surface, self.bounds = self.get_surface(self.text)
