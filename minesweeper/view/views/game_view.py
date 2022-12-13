@@ -9,7 +9,8 @@ from ..elements.cell import Cell
 from ..elements.image import Image
 from ..elements.rectangle import Rectangle
 from ..elements.text_object import TextObject
-from ...assets.colors import SECONDARY_COLOR, PRIMARY_COLOR, WARNING_COLOR
+from ..elements.label import Label
+from ...assets.colors import SECONDARY_COLOR, PRIMARY_COLOR, WARNING_COLOR, DANGER_COLOR
 from ...config import (
     CAPTION,
     ICON,
@@ -345,13 +346,40 @@ class MinesweeperView(BaseView):
     def show_win_message(self):
         self.sound_effects["win"].set_volume(VOLUME_MUSIC)
         self.sound_effects["win"].play()
-        self.show_message("YOU WIN!", WARNING_COLOR, centralized=True)
+        background = Rectangle(
+            0, 0, self.surface_width, self.surface_height, pygame.Color(SECONDARY_COLOR)
+        )
+        timer_label = Label(
+            self.game_area_width // 2,
+            self.game_area_height // 2 + 50,
+            self.timer_string,
+            DANGER_COLOR,
+            self.message_font,
+            centralized=True
+        )
+        self.objects.append(background)
+        self.objects.append(timer_label)
+        if self.controller.save_records(self.game_time):
+            new_record_label = Label(
+                self.game_area_width // 2,
+                self.game_area_height // 2 - 50,
+                "New record!",
+                DANGER_COLOR,
+                self.message_font,
+                centralized=True
+            )
+            self.objects.append(new_record_label)
+        self.show_message("YOU WIN!", DANGER_COLOR, centralized=True)
         self.controller.set_view_state("menu")
         self.view_run = False
 
     def show_game_over_message(self):
         self.sound_effects["lose"].set_volume(VOLUME_MUSIC)
         self.sound_effects["lose"].play()
-        self.show_message("YOU LOSE!", WARNING_COLOR, centralized=True)
+        background = Rectangle(
+            0, 0, self.surface_width, self.surface_height, pygame.Color(SECONDARY_COLOR)
+        )
+        self.objects.append(background)
+        self.show_message("YOU LOSE!", DANGER_COLOR, centralized=True)
         self.controller.set_view_state("menu")
         self.view_run = False
