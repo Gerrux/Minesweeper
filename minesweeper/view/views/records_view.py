@@ -17,6 +17,7 @@ from ...config import (
     SOUNDS,
     MENU_BACKGROUND,
 )
+from ...utils.get_path import get_path_to_file_from_root
 
 
 class RecordsView(BaseView):
@@ -28,16 +29,16 @@ class RecordsView(BaseView):
             height=800,
             background_color=pygame.Color(SECONDARY_COLOR),
             frame_rate=FRAME_RATE,
-            icon=pygame.image.load(self.get_path_assets(ICON)),
+            icon=pygame.image.load(get_path_to_file_from_root(ICON)),
         )
         self.objects = []
-        self.font = pygame.font.Font(self.get_path_assets(FONT), FONT_SIZE)
+        self.font = pygame.font.Font(get_path_to_file_from_root(FONT), FONT_SIZE)
         self.background_image = Image(
-            pygame.image.load(self.get_path_assets(MENU_BACKGROUND)), 0, 0, 600, 800
+            pygame.image.load(get_path_to_file_from_root(MENU_BACKGROUND)), 0, 0, 600, 800
         )
         self.objects.append(self.background_image)
         self.mouse_handlers = []
-        self.sound_effect = pygame.mixer.Sound(self.get_path_assets(SOUNDS["click"]))
+        self.sound_effect = pygame.mixer.Sound(get_path_to_file_from_root(SOUNDS["click"]))
         self.controller = controller
         self.controller.set_view(self)
         self.show_record_labels()
@@ -46,7 +47,7 @@ class RecordsView(BaseView):
     def show_record_labels(self):
         background_records = Rectangle(150, 275, 300, 250, pygame.Color(SECONDARY_COLOR), corner_radius=20)
         self.objects.append(background_records)
-        src = self.get_path_assets("model/records.json")
+        src = get_path_to_file_from_root("model/records.json")
         with open(src, "r") as read_file:
             data = json.load(read_file)
         counter = 0

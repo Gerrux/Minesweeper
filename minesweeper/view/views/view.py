@@ -1,4 +1,3 @@
-import os
 import sys
 from collections import defaultdict
 
@@ -22,11 +21,6 @@ class BaseView:
         self.keydown_handlers = defaultdict(list)
         self.keyup_handlers = defaultdict(list)
         self.mouse_handlers = []
-
-    @staticmethod
-    def get_path_assets(path):
-        asset_path = f"{os.path.normpath(os.path.dirname(os.path.abspath(os.path.join(__file__, '../../'))))}\{os.path.normpath(path)}"
-        return asset_path
 
     def update(self):
         for o in self.objects:

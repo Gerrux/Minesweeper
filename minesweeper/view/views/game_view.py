@@ -24,6 +24,7 @@ from ...config import (
     VOLUME_MUSIC,
     SOUNDS,
 )
+from ...utils.get_path import get_path_to_file_from_root
 
 
 class MinesweeperView(BaseView):
@@ -35,7 +36,7 @@ class MinesweeperView(BaseView):
             height=GAME_MODE[game_mode]["surface_height"],
             background_color=pygame.Color(SECONDARY_COLOR),
             frame_rate=FRAME_RATE,
-            icon=pygame.image.load(self.get_path_assets(ICON)),
+            icon=pygame.image.load(get_path_to_file_from_root(ICON)),
         )
 
         self.surface_width = GAME_MODE[game_mode]["surface_width"]
@@ -48,18 +49,18 @@ class MinesweeperView(BaseView):
         self.column_count = GAME_MODE[game_mode]["count_cells_column"]
 
         self.sound_effects = {
-            name: pygame.mixer.Sound(self.get_path_assets(sound))
+            name: pygame.mixer.Sound(get_path_to_file_from_root(sound))
             for name, sound in SOUNDS.items()
         }
         self.sprites = {
             name: pygame.transform.scale(
-                pygame.image.load(self.get_path_assets(sprite)),
+                pygame.image.load(get_path_to_file_from_root(sprite)),
                 (self.cell_width, self.cell_height),
             )
             for name, sprite in GAME_SPRITES.items()
         }
-        self.font = pygame.font.Font(self.get_path_assets(FONT), FONT_SIZE)
-        self.message_font = pygame.font.Font(self.get_path_assets(FONT), FONT_SIZE * 2)
+        self.font = pygame.font.Font(get_path_to_file_from_root(FONT), FONT_SIZE)
+        self.message_font = pygame.font.Font(get_path_to_file_from_root(FONT), FONT_SIZE * 2)
 
         self.game_area_width = self.row_count * self.cell_height
         self.game_area_height = self.column_count * self.cell_width
@@ -81,8 +82,8 @@ class MinesweeperView(BaseView):
         self.controller = controller
         self.controller.set_view(self)
 
-        self.clock_image = pygame.image.load(self.get_path_assets(CLOCK))
-        self.bomb_image = pygame.image.load(self.get_path_assets(ICON))
+        self.clock_image = pygame.image.load(get_path_to_file_from_root(CLOCK))
+        self.bomb_image = pygame.image.load(get_path_to_file_from_root(ICON))
         self.board = None
         self.timer_string = None
         self.bomb_num_string = None

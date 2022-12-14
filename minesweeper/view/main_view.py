@@ -27,10 +27,10 @@ class MainView:
 
     def run(self):
         while True:
-            match self.controller.get_view_state():
-                case "menu":
-                    self.switch_on_menu()
-                case "records":
-                    self.switch_on_records()
-                case "game":
-                    self.switch_on_game()
+            state = self.controller.get_view_state()
+            if state == "menu":
+                self.switch_on_menu()
+            elif state == "records":
+                self.switch_on_records()
+            elif state == "game":
+                self.switch_on_game()

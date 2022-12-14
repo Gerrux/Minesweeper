@@ -15,6 +15,7 @@ from ...config import (
     SOUNDS,
     MENU_BACKGROUND,
 )
+from ...utils.get_path import get_path_to_file_from_root
 
 
 class MenuView(BaseView):
@@ -26,14 +27,14 @@ class MenuView(BaseView):
             height=800,
             background_color=pygame.Color(SECONDARY_COLOR),
             frame_rate=FRAME_RATE,
-            icon=pygame.image.load(self.get_path_assets(ICON)),
+            icon=pygame.image.load(get_path_to_file_from_root(ICON)),
         )
         self.objects = []
-        self.font = pygame.font.Font(self.get_path_assets(FONT), FONT_SIZE)
+        self.font = pygame.font.Font(get_path_to_file_from_root(FONT), FONT_SIZE)
         self.background_image = None
         self.mouse_handlers = []
         self.menu_buttons = []
-        self.sound_effect = pygame.mixer.Sound(self.get_path_assets(SOUNDS["click"]))
+        self.sound_effect = pygame.mixer.Sound(get_path_to_file_from_root(SOUNDS["click"]))
         self.controller = controller
         self.controller.set_view(self)
         self.create_menu()
@@ -65,7 +66,7 @@ class MenuView(BaseView):
             sys.exit()
 
         self.background_image = Image(
-            pygame.image.load(self.get_path_assets(MENU_BACKGROUND)), 0, 0, 600, 800
+            pygame.image.load(get_path_to_file_from_root(MENU_BACKGROUND)), 0, 0, 600, 800
         )
         self.objects.append(self.background_image)
         for i, (text, click_handler) in enumerate(
