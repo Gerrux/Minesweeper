@@ -1,8 +1,7 @@
-import os
-
 import pygame
 
-from minesweeper.config import GAME_SPRITES
+from ...config import GAME_SPRITES
+from ...utils.get_path import get_path_to_file_from_root
 
 
 class Cell:
@@ -17,11 +16,11 @@ class Cell:
         self.on_left_click = on_left_click
         self.on_right_click = on_right_click
         self.normal_image = pygame.transform.scale(
-            pygame.image.load(self.get_path_assets(GAME_SPRITES["cell_surf"])),
+            pygame.image.load(get_path_to_file_from_root(GAME_SPRITES["cell_surf"])),
             (bounds.w, bounds.h),
         )
         self.hover_image = pygame.transform.scale(
-            pygame.image.load(self.get_path_assets(GAME_SPRITES["cell_surf_select"])),
+            pygame.image.load(get_path_to_file_from_root(GAME_SPRITES["cell_surf_select"])),
             (bounds.w, bounds.h),
         )
 
@@ -30,11 +29,6 @@ class Cell:
         return dict(
             normal=self.normal_image, hover=self.hover_image, pressed=self.image
         )[self.state]
-
-    @staticmethod
-    def get_path_assets(path):
-        asset_path = f"{os.path.normpath(os.path.dirname(os.path.abspath(os.path.join(__file__, '../..'))))}\{os.path.normpath(path)}"
-        return asset_path
 
     def draw(self, surface):
         surface.blit(self.back_image, self.bounds)

@@ -1,8 +1,8 @@
 import json
-import os
 from random import randint
 
 from .cell_model import MinesweeperCell
+from ..utils.get_path import get_path_to_file_from_root
 
 MIN_ROW_COUNT = 5
 MAX_ROW_COUNT = 30
@@ -49,10 +49,10 @@ class MinesweeperModel:
 
     def get_cell(self, row, column):
         if (
-            row < 0
-            or column < 0
-            or self.row_count <= row
-            or self.column_count <= column
+                row < 0
+                or column < 0
+                or self.row_count <= row
+                or self.column_count <= column
         ):
             return None
 
@@ -68,7 +68,7 @@ class MinesweeperModel:
             for column in range(self.column_count):
                 cell = self.cells_table[row][column]
                 if not cell.mined and (
-                    cell.state != "opened" and cell.state != "flagged"
+                        cell.state != "opened" and cell.state != "flagged"
                 ):
                     return False
         if self.get_count_flags() <= self.bomb_count:
@@ -128,7 +128,7 @@ class MinesweeperModel:
         return filter(lambda n: n is not None, neighbours)
 
     def save_records(self, ticks):
-        src = f"{os.path.normpath(os.path.dirname(os.path.abspath(__file__)))}\{os.path.normpath('records.json')}"
+        src = get_path_to_file_from_root('.\model\\records.json')
         with open(src, "r") as read_file:
             data = json.load(read_file)
         if data[self.game_mode] > ticks or data[self.game_mode] == 0:
