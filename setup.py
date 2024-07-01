@@ -8,10 +8,13 @@ description = "This simple implementation of the minesweeper game is done in Pyt
 
 setup(
     name="minesweeper-mvc",
-    version="1.0.4",
+    version="1.1.0",
     description=description,
     long_description=long_description,
     long_description_content_type="text/markdown",
+    urls=[
+        ("Project", "https://github.com/Gerrux/Minesweeper")
+    ],
     author="Ilya Kalinin",
     author_email="gerrux@yandex.ru",
     license="MIT",
@@ -26,8 +29,8 @@ setup(
     entry_points={
         "console_scripts": ["minesweeper=minesweeper:__main__"],
     },
-    setup_requires=[
-        "wheel>=0.37.1",
+    python_requires=">=3.6",
+    install_requires=[
         "pygame>=2.1.2"
     ],
 )

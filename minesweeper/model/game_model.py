@@ -1,6 +1,6 @@
 import json
 from random import randint
-
+from ..config import PATH_RECORDS
 from .cell_model import MinesweeperCell
 from ..utils.get_path import get_path_to_file_from_root
 
@@ -128,7 +128,7 @@ class MinesweeperModel:
         return filter(lambda n: n is not None, neighbours)
 
     def save_records(self, ticks):
-        src = get_path_to_file_from_root('.\model\\records.json')
+        src = get_path_to_file_from_root(PATH_RECORDS)
         with open(src, "r") as read_file:
             data = json.load(read_file)
         if data[self.game_mode] > ticks or data[self.game_mode] == 0:

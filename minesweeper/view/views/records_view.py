@@ -16,6 +16,7 @@ from ...config import (
     FONT_SIZE,
     SOUNDS,
     MENU_BACKGROUND,
+    PATH_RECORDS,
 )
 from ...utils.get_path import get_path_to_file_from_root
 
@@ -47,7 +48,7 @@ class RecordsView(BaseView):
     def show_record_labels(self):
         background_records = Rectangle(150, 275, 300, 250, pygame.Color(SECONDARY_COLOR), corner_radius=20)
         self.objects.append(background_records)
-        src = get_path_to_file_from_root("model/records.json")
+        src = get_path_to_file_from_root(PATH_RECORDS)
         with open(src, "r") as read_file:
             data = json.load(read_file)
         counter = 0
